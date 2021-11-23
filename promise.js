@@ -1,0 +1,1 @@
+(x) => new Promise((res, rej) => { x < 18 ? res('yes') : rej('no')})

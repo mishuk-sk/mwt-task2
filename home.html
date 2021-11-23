@@ -1,0 +1,10 @@
+<html>
+    <body>
+        <input id='inp' value='8017'/><button id='bt'>Click me!</button>
+    </body>
+    <script>
+        document.querySelector('#bt').addEventListener('click', async ()=> {
+            document.querySelector('#inp').value =  await (await fetch("/login")).text()
+        })
+    </script>
+</html>
