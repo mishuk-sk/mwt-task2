@@ -23,11 +23,11 @@ app.get("/login/2", (req, resp)=>{
     resp.send("Skuratovich");
 })
 app.get("/login/code1", (req, resp)=>{
-    response.send('<html><body><center><p style="font-size: 21px; font-weight:900">Your family</p></center></body></html>');
+    resp.send('<html><body><center><p style="font-size: 21px; font-weight:900">Your family</p></center></body></html>');
 })
 app.get("/login/code2", (req, resp)=>{
     resp.set('Content-Type', "text/html");
-    response.send('<html><body><center><p style="font-size: 21px; font-weight:900">Your family</p></center></body></html>');
+    resp.send('<html><body><center><p style="font-size: 21px; font-weight:900">Your family</p></center></body></html>');
 })
 app.get("/promise", (req, resp) => {
     resp.sendFile(path.resolve(__dirname, 'promise.js'));
