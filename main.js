@@ -9,10 +9,26 @@ app.use((req, resp, next) => {
 });
 
 app.get("/", (req, response)=>{
-    response.send("<html><body><center><p>Skuratovich</p></center></body></html>");
+    response.status(500).send('<html><body style="background-color: blue"><center><p style="color:red">Не понял - ошибка  500 (Internal Server Error)</p></center></body></html>');
 })
 app.get("/login", (req, resp)=>{
     resp.send("Skuratovich");
+})
+app.get("/login/1", (req, resp)=>{
+    resp.set('Content-Type', "application/json");
+    resp.send("Skuratovich");
+})
+app.get("/login/2", (req, resp)=>{
+    resp.set('Content-Type', "application/json; charset=utf-8");
+    resp.send("Skuratovich");
+})
+app.get("/login/code1", (req, resp)=>{
+    resp.set('Content-Type', "application/json");
+    response.send('<html><body><center><p style="font-size: 21px; font-weight:900">Your family</p></center></body></html>');
+})
+app.get("/login/code2", (req, resp)=>{
+    resp.set('Content-Type', "text/html");
+    response.send('<html><body><center><p style="font-size: 21px; font-weight:900">Your family</p></center></body></html>');
 })
 app.get("/promise", (req, resp) => {
     resp.sendFile(path.resolve(__dirname, 'promise.js'));
@@ -23,5 +39,8 @@ app.get("/promise/:x", (req, resp) => {
     prom(x).then((reason) => resp.send(reason), (reason) => resp.status(400).send(reason))
 })
 app.get("/fetch", (_, resp) => resp.sendFile(path.resolve(__dirname, 'home.html')))
+app.get("*", (req, response) => {
+    response.status(404).send('<html><body style="background-color: yellow"><center><p style="color:red">Ужас - ошибка 404 (не найдено)</p></center></body></html>');
+})
 
 app.listen(port, ()=>{console.log("listening on %s", port)});
