@@ -34,7 +34,7 @@ app.get("/promise", (req, resp) => {
 })
 app.get("/promise/:x", (req, resp) => {
     x = req.params['x'];
-    prom = (x) => new Promise((res, rej) => { x < 13 res('yes') : rej('no')})
+    prom = (x) => new Promise((res, rej) => { x < 13 ? res('yes') : rej('no')})
     prom(x).then((reason) => resp.send(reason), (reason) => resp.status(400).send(reason))
 })
 app.get("/fetch", (_, resp) => resp.sendFile(path.resolve(__dirname, 'home.html')))
