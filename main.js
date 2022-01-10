@@ -15,7 +15,7 @@ app.get("/login", (req, resp)=>{
     resp.send("Skuratovich");
 })
 app.get("/login/1", (req, resp)=>{
-    resp.set('Content-Type', "application/json");
+    resp.set('Content-Type', "application/json;");
     resp.send("Skuratovich");
 })
 app.get("/login/2", (req, resp)=>{
