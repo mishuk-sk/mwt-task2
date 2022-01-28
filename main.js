@@ -3,24 +3,32 @@ const port = process.env.PORT;
 const { response } = require("express");
 const path = require("path");
 
+app.disable('etag');
+
 app.use((req, resp, next) => {
     resp.set('Access-Control-Allow-Origin', '*');
     next();
+});
+
+app.use((req, res, next) => {
+  res.set('Cache-Control', 'no-store')
+  next()
 });
 
 app.get("/", (req, response)=>{
     response.status(500).send('<html><body style="background-color: blue"><center><p style="color:red">Не понял - ошибка  500 (Internal Server Error)</p></center></body></html>');
 })
 app.get("/login", (req, resp)=>{
+    resp.set('Content-Type', "text/plain");
     resp.send("Skuratovich");
 })
 app.get("/login/1", (req, resp)=>{
-    resp.set('Content-Type', "application/json");
-    resp.send("Skuratovich");
+    resp.writeHeader(200, { 'Content-Type': 'application/json' })
+    resp.write(JSON.stringify("Skuratovich"))
 })
 app.get("/login/2", (req, resp)=>{
     resp.set('Content-Type', "application/json; charset=utf-8");
-    resp.send("Skuratovich");
+    resp.send('"Skuratovich"');
 })
 app.get("/login/code1", (req, resp)=>{
     resp.send('<html><body><center><p style="font-size: 21px; font-weight:900">Skuratovich`s</p></center></body></html>');
